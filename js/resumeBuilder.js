@@ -63,3 +63,42 @@ var education = [
 		"url": "http://www.yale.edu/"
 	}
 ]
+
+
+
+// Insert Name and Role
+
+$('#header').prepend(HTMLheaderRole.replace('%data%',bio.role));
+$('#header').prepend(HTMLheaderName.replace('%data%',bio.name));
+
+// Insert contact info
+
+$('#topContacts').append(HTMLmobile.replace('%data%',bio.phone));
+$('#topContacts').append(HTMLemail.replace('%data%',bio.email));
+
+// Insert bio pic and bio text
+$('#header').append(HTMLbioPic.replace('%data%',bio.picture_url));
+$('#header').append(HTMLWelcomeMsg.replace('%data%',bio.welcome_message));
+
+
+
+if (bio.skills.length>0) {
+	$('#header').append(HTMLskillsStart);
+	for (i in bio.skills) {
+		$('#skills').append(HTMLskills.replace("%data%",bio.skills[i]));
+	}
+}
+
+for(i in work) {
+	$('#workExperience').append(HTMLworkStart);
+	var formattedEmployerTitle =
+		HTMLworkEmployer.replace('%data%',work[i].employer) +
+		HTMLworkTitle.replace('%data%',work[i].title);
+	$('.work-entry:last').append(HTMLworkEmployer.replace('%data%',work[i].employer));
+	$('.work-entry:last').append(HTMLworkTitle.replace('%data%',work[i].title));
+	$('.work-entry:last').append(HTMLworkLocation.replace('%data%',work[i].location));
+	$('.work-entry:last').append(HTMLworkDates.replace('%data%',work[i].dates));
+	$('.work-entry:last').append(HTMLworkDescription.replace('%data%',work[i].description));
+	//$('.work-entry:last').append(formattedEmployerTitle);
+}
+
